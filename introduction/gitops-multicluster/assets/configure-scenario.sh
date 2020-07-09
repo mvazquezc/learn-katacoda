@@ -163,7 +163,7 @@ clear
 clear
 stty -echo
 export PS1=""
-export ARGOCD_VERSION='v1.2.2'
+export ARGOCD_VERSION='v1.6.1'
 export ARGOCD_NS='argocd'
 export GOGS_NS='gogs'
 clear
@@ -188,12 +188,12 @@ git clone https://github.com/openshift/federation-dev federation-dev/ &> /dev/nu
 cd federation-dev/ &> /dev/null
 git checkout katacoda &> /dev/null
 cd ../ &> /dev/null
-git clone https://github.com/mvazquezc/gitops-demo gitops-demo/ &> /dev/null
+git clone https://github.com/RHsyseng/katacoda-gitops-multicluster-scenario gitops-demo/ &> /dev/null
 cd gitops-demo/ &> /dev/null
 git checkout pro &> /dev/null
 cd ../ &> /dev/null
 oc create namespace $ARGOCD_NS &> /dev/null
-oc -n $ARGOCD_NS apply -f https://raw.githubusercontent.com/argoproj/argo-cd/v1.2.2/manifests/install.yaml &> /dev/null
+oc -n $ARGOCD_NS apply -f https://raw.githubusercontent.com/argoproj/argo-cd/${ARGOCD_VERSION}/manifests/install.yaml &> /dev/null
 echo "Waiting for ArgoCD to be up and running"
 wait_for_deployment $ARGOCD_NS argocd-server 0 &> /dev/null
 sleep 2
